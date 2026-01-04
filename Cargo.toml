@@ -1,0 +1,16 @@
+[package]
+name = "insect-island"
+version = "0.1.0"
+edition = "2024"
+repository = "https://github.com/aviboddu/insect-island"
+license = "GPL-3.0+"
+
+[lints.rust]
+missing_copy_implementations = "warn"
+missing_debug_implementations = "warn"
+missing_docs = "warn"
+redundant_imports = "warn"
+redundant_lifetimes = "warn"
+single_use_lifetimes = "deny"
+
+[dependencies]
