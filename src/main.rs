@@ -2,12 +2,19 @@
 
 use std::time::Duration;
 
+use legion::{Resources, World};
 use sdl2::{event::Event, image::LoadTexture, keyboard::Keycode, pixels::Color, rect::FRect};
 
 /// Entry point of the application.
 fn main() {
     println!("Hello World");
 
+    let _world = World::default();
+    let _resources = Resources::default();
+
+    // Load minimal configuration and resources for loading game state
+
+    // Initialize SDL2 and subsystems.
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
     let window = video_subsystem
@@ -24,6 +31,8 @@ fn main() {
     canvas.present();
     let mut event_pump = sdl_context.event_pump().unwrap();
     let mut i = 0;
+
+    // Run the main game loop.
     'running: loop {
         i = (i + 1) % 255;
         canvas.set_draw_color(Color::RGB(i, 64, 255 - i));
