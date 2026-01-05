@@ -2,7 +2,7 @@
 
 use std::time::Duration;
 
-use sdl2::{event::Event, keyboard::Keycode, pixels::Color, render::TextureAccess};
+use sdl2::{event::Event, keyboard::Keycode, pixels::Color};
 
 /// Entry point of the application.
 fn main() {
