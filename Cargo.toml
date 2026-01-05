@@ -17,13 +17,28 @@ single_use_lifetimes = "deny"
 config = { version = "0.15.19", features = ["json"] }
 glob = "0.3.3"
 sdl2 = { version = "0.38.0", features = [
-    "bundled",
     "gfx",
     "image",
     "mixer",
+    "static-link",
     "ttf",
+    "use-vcpkg",
 ] }
 serde = { version = "1.0.228", features = ["derive"] }
 
 [profile.dev.package.sdl2]
 opt-level = 3
+
+[package.metadata.vcpkg]
+dependencies = [
+    "sdl2",
+    "sdl2-image[libjpeg-turbo,tiff,libwebp]",
+    "sdl2-ttf",
+    "sdl2-gfx",
+    "sdl2-mixer",
+]
+git = "https://github.com/microsoft/vcpkg"
+rev = "2025.12.12"
+
+[package.metadata.vcpkg.target]
+x86_64-pc-windows-msvc = { triplet = "x64-windows-static-md" }
