@@ -2,6 +2,7 @@
 
 use std::time::Duration;
 
+use config::Config;
 use legion::{Resources, World};
 use sdl2::{event::Event, image::LoadTexture, keyboard::Keycode, pixels::Color, rect::FRect};
 
@@ -13,12 +14,23 @@ fn main() {
     let _resources = Resources::default();
 
     // Load minimal configuration and resources for loading game state
+    let minimal_config = Config::builder()
+        .add_source(config::File::new(
+            "config/config.json",
+            config::FileFormat::Json,
+        ))
+        .build()
+        .unwrap();
 
     // Initialize SDL2 and subsystems.
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
     let window = video_subsystem
-        .window("Insect Island", 800, 600)
+        .window(
+            minimal_config.get_string("app_name").unwrap().as_str(),
+            800,
+            600,
+        )
         .position_centered()
         .build()
         .unwrap();
