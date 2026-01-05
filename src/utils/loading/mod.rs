@@ -37,10 +37,10 @@ pub fn load_resources(rl: &mut RaylibHandle, thread: &RaylibThread) -> Resources
         font_map.insert(file_name, font);
     }
     let fallback_font = unsafe { Font::from_raw(rl.get_font_default().to_raw()) };
-    return Resources {
+    Resources {
         fonts: font_map,
         fallback_font,
-    };
+    }
 }
 
 #[cfg(test)]
