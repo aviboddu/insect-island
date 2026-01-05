@@ -23,14 +23,26 @@ fn main() {
     while !rl.window_should_close() {
         let mut d = rl.begin_drawing(&thread);
 
-        d.clear_background(Color::WHITE);
+        d.clear_background(Color::BLACK);
         d.draw_text_ex(
             font,
             "Config Loaded",
             Vector2::new(12.0, 12.0),
             20.0,
             2.0,
-            Color::BLACK,
+            Color::WHITE,
         );
+        for i in 0..(31 * 32) {
+            let (t, r) = resources.get_sprite(&format!("BountifulBits_10x10_{}", i));
+            d.draw_texture_rec(
+                t,
+                *r,
+                Vector2::new(
+                    50.0 + (i as f32 % 32.0) * 10.0,
+                    50.0 + (i as f32 / 32.0).floor() * 10.0,
+                ),
+                Color::WHITE,
+            );
+        }
     }
 }
