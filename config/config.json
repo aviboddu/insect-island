@@ -1,3 +1,10 @@
 {
-    "app_name": "Insect Island"
+    "window": {
+        "title": "Insect Island",
+        "width": 800,
+        "height": 600,
+        "pos_x": 100,
+        "pos_y": 100,
+        "high_dpi": true
+    }
 }

@@ -25,15 +25,19 @@ fn main() {
     // Initialize SDL2 and subsystems.
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
-    let window = video_subsystem
-        .window(
-            minimal_config.get_string("app_name").unwrap().as_str(),
-            800,
-            600,
-        )
-        .position_centered()
-        .build()
-        .unwrap();
+    let mut window_builder = video_subsystem.window(
+        minimal_config.get_string("window.title").unwrap().as_str(),
+        minimal_config.get_int("window.width").unwrap() as u32,
+        minimal_config.get_int("window.height").unwrap() as u32,
+    );
+    window_builder.position(
+        minimal_config.get_int("window.pos_x").unwrap() as i32,
+        minimal_config.get_int("window.pos_y").unwrap() as i32,
+    );
+    if minimal_config.get_bool("window.high_dpi").unwrap_or(false) {
+        window_builder.allow_highdpi();
+    }
+    let window = window_builder.build().unwrap();
     let mut canvas = window.into_canvas().build().unwrap();
     let texture_creator = canvas.texture_creator();
     let texture = texture_creator
