@@ -14,6 +14,8 @@ redundant_lifetimes = "warn"
 single_use_lifetimes = "deny"
 
 [dependencies]
+config = { version = "0.15.19", features = ["json"] }
+glob = "0.3.3"
 raylib = { version = "5.5.1", features = ["serde", "with_serde"] }
 serde = { version = "1.0.228", features = ["derive"] }
 
